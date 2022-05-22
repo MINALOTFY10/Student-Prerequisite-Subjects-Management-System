@@ -5,7 +5,7 @@ Course courseObject;
 Student studentObject;
 
 Admin::Admin() {
-	name = "";
+	name = ""; 
 	password = "";
 }
 
@@ -19,7 +19,7 @@ log:
 
 	if (adminMap[password].name == name)
 	{
-		cout << "Login Successfully..." << endl;
+		 cout << "Login Successfully..." << endl;
 	}
 	else
 	{
@@ -506,7 +506,7 @@ void Admin::addFinishedCourses(map<int, class Student>& studentMap, map<int, vec
 					{
 						if (it3->second.getName() == *it1)
 						{
-							courseMap[it3->first].setNumOfCurrentStudent(courseMap[it3->first].getNumOfCurrentStudent());
+							courseMap[it3->first].setNumOfCurrentStudent(courseMap[it3->first].getNumOfCurrentStudent()-1);
 						}
 						it3++;
 					}
