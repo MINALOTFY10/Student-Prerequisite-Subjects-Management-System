@@ -260,11 +260,10 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
 
     string* courseName = new string;
     string* courseCode = new string;
-    bool* limit = new bool;
-    bool* registered = new bool;
+ 
     bool* found = new bool;
     bool* noPreRequiredProblem = new bool;
-    *limit = *registered = *found = *noPreRequiredProblem = false;
+    *found = *noPreRequiredProblem = false;
 
     cout << "you can register in one of these courses" << endl;
     viewAvailableCourses(courseMap, finishedMap, inProgrssMap);
@@ -272,7 +271,7 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
     cout << "Enter the Name of Course You Want To Register" << endl;
     cin >> *courseName;
     for (int i = 0; i < listAvailableCourse.size(); i++) {
-        if (*courseName == listAvailableCourse.at(i)) {
+        if (*courseName == listAvailableCourse[i]) {
             *found = true;
         }
     }
@@ -290,14 +289,6 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
         }
         sort(prerequiredMap[*courseCode].begin(), prerequiredMap[*courseCode].end());
         sort(finishedMap[id].begin(), finishedMap[id].end());
-
-        if (prerequiredMap[*courseCode].size() != 0) {
-            cout << "The Pre-Required Courses of " << *courseName << ": \n-----------------------\n";
-            for (int i = 0; i != prerequiredMap[*courseCode].size(); i++)
-            {
-                cout << "Course Name:" << prerequiredMap[*courseCode][i] << endl;
-            }
-        }
 
         if (prerequiredMap[*courseCode].empty())      //check Student's pre-required courses 
         {
@@ -321,7 +312,6 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
             }
         }
 
-
         if (*noPreRequiredProblem) {
             courseMap[*courseCode].setNumOfCurrentStudent(courseMap[*courseCode].getNumOfCurrentStudent() + 1);
             hasCourseMap[*courseCode].push_back(to_string(id));
@@ -336,7 +326,7 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
     else {
         cout << "\nWrong! This Course is not available" << endl;;
     }
-    delete courseName, courseCode, limit, registered, found, noPreRequiredProblem;
+    delete courseName, courseCode, found, noPreRequiredProblem;
 }
 
 
