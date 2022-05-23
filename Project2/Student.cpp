@@ -260,11 +260,10 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
 
     string* courseName = new string;
     string* courseCode = new string;
-    bool* limit = new bool;
-    bool* registered = new bool;
+ 
     bool* found = new bool;
     bool* noPreRequiredProblem = new bool;
-    *limit = *registered = *found = *noPreRequiredProblem = false;
+    *found = *noPreRequiredProblem = false;
 
     cout << "you can register in one of these courses" << endl;
     viewAvailableCourses(courseMap, finishedMap, inProgrssMap);
@@ -336,7 +335,7 @@ void Student::registerForCourse(map <string, vector<string>> prerequiredMap,
     else {
         cout << "\nWrong! This Course is not available" << endl;;
     }
-    delete courseName, courseCode, limit, registered, found, noPreRequiredProblem;
+    delete courseName, courseCode, found, noPreRequiredProblem;
 }
 
 
