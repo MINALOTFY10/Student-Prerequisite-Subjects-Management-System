@@ -401,12 +401,13 @@ theStart:
 		goto theStart;
 	}
 	else {
-
+		string* courseName = new string;
+		*courseName = courseMap[*courseCode].getName();
 		map<int, vector<string>>::iterator it = inProgressMap.begin();
 		vector<string>* tmp = new vector<string>;
 		while (it != inProgressMap.end()) {
 			for (int i = 0; i < it->second.size(); i++) {
-				if (it->second.at(i) == courseMap[*courseCode].getName())
+				if (it->second.at(i) == *courseName)
 				{
 					(*tmp).push_back(studentMap[it->first].get_Name());
 					break;
@@ -424,7 +425,7 @@ theStart:
 				cout << "  " << (*tmp).at(i) << endl;
 			}
 		}
-		delete tmp, courseCode;
+		delete tmp, courseCode, courseName;
 	}
 	cout << "\n\n";
 }
@@ -432,7 +433,7 @@ theStart:
 void Admin::viewCoursesOfStudent(map<int, class Student>& studentMap, map<int, vector<string>>& inProgressMap, map<int, vector<string>>& fininshedMap) {//asale el mo3ed
 	int* id = new int;
 theBegin:
-	cout << "\nEnter Id of Student : " << endl;;
+	cout << "\nEnter Id of Student : " << endl;
 	cin >> *id;
 	cout << "\n";
 	if (studentMap[*id].get_Name().empty() == false)
@@ -442,7 +443,7 @@ theBegin:
 			cout << "The inProgress Courses of student " << studentMap[*id].get_Name() << "" << endl;
 			for (int i = 0; i < inProgressMap[*id].size(); i++)
 			{
-				cout << "	" << inProgressMap[*id].at(i) << endl;;
+				cout << "	" << inProgressMap[*id].at(i) << endl;
 			}
 		}
 		else {
@@ -475,6 +476,7 @@ void Admin::addFinishedCourses(map<int, class Student>& studentMap, map<int, vec
 	int* tmp = new int;
 	string* courseName = new string;
 	bool* found = new bool;
+theBegining:
 	cout << "\nEnter id of student:";
 	cin >> *id;
 	if (studentMap[*id].get_Name().empty() == false)
@@ -506,7 +508,7 @@ void Admin::addFinishedCourses(map<int, class Student>& studentMap, map<int, vec
 					{
 						if (it3->second.getName() == *it1)
 						{
-							courseMap[it3->first].setNumOfCurrentStudent(courseMap[it3->first].getNumOfCurrentStudent());
+							courseMap[it3->first].setNumOfCurrentStudent(courseMap[it3->first].getNumOfCurrentStudent() - 1);
 						}
 						it3++;
 					}
@@ -527,6 +529,7 @@ void Admin::addFinishedCourses(map<int, class Student>& studentMap, map<int, vec
 	}
 	else {
 		cout << "No student has this id" << endl;
+		goto theBegining;
 	}
 	delete id, tmp, courseName, found;
 }
