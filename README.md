@@ -9,11 +9,11 @@ Student registration: students can register to the system by providing their det
 Subject registration: students can register to any subject provided in the system and check their prerequisite subjects.
 Prerequisite subjects management: students can view their prerequisite subjects and check if they have completed them or not.
 
-Data Structures Used
+# Data Structures Used
 This project uses various data structures such as Arrays, Linked lists, and Queues to store and manipulate student and subject information. For example, an array is used to store all the registered students, a linked list is used to store the prerequisite subjects of each student.
 
-Database
+# Database
 This project uses a local database to store all the student and subject information. The database is created using SQLite.
 
-Conclusion
+# Conclusion
 This project provides a simple and efficient way of managing student prerequisite subjects using data structures and a local database. It can be used as a starting point for more complex systems that require similar functionalities. If you have any suggestions or improvements, feel free to contribute to the project.
